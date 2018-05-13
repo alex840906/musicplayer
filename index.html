@@ -3,47 +3,109 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>播放器</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/jquery-3.3.1.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script>
-$(function(){
-	$("#open").click(function() {  
-		$("#menu").show();
-		$("#menu2").hide();
+$(function(){ 
+	var num,last_num1,last_num2,last_num3,last_num4,current_num,current_class;
+	$("#but1").click(function() {  
+		do{
+			num = get_random_val();
+		} while(num==last_num1);
+		
+		$("#now").text("1_"+num);
+		
+		$("audio#play").get(0).pause();	
+		$("audio#play").attr("src","music1_"+num+".mp3"); 
 		$("audio#play").get(0).play();	
-		$("audio#play2").get(0).pause();
-	});  
-	$("#open2").click(function() {  
-		$("#menu2").show();
-		$("#menu").hide();
-		$("audio#play2").get(0).play();		
-		$("audio#play").get(0).pause();
-	}); 
+		last_num1 = num;
+		current_num = num;
+		current_class = 1;
+	});
+	$("#but2").click(function() { 
+		do{
+			num = get_random_val();
+		} while(num==last_num2);
+		
+		$("#now").text("2_"+num);
+		
+		$("audio#play").get(0).pause();	
+		$("audio#play").attr("src","music2_"+num+".mp3"); 
+		$("audio#play").get(0).play();
+		last_num2 = num;	
+		current_num = num;
+		current_class = 2;
+	});
+	$("#but3").click(function() {  
+		do{
+			num = get_random_val();
+		} while(num==last_num3);
+		$("#now").text("3_"+num);
+		
+		$("audio#play").get(0).pause();	
+		$("audio#play").attr("src","music3_"+num+".mp3"); 
+		$("audio#play").get(0).play();	
+		last_num3 = num;
+		current_num = num;
+		current_class = 3;
+	});
+	$("#but4").click(function() {
+		do{
+			num = get_random_val();
+		} while(num==last_num4);
+		$("#now").text("4_"+num);
+		
+		$("audio#play").get(0).pause();	
+		$("audio#play").attr("src","music4_"+num+".mp3"); 
+		$("audio#play").get(0).play();
+		last_num4 = num;
+		current_num = num;	
+		current_class = 4;
+	});
+	
+	function get_random_val(){
+		var val;
+		val = Math.floor((Math.random() * 5) + 1);
+		
+		return val;
+	}
+	
+    $("audio#play").bind("ended", function() { 
+		do{
+			num = get_random_val();
+		} while(num==current_num);
+		
+		$("#now").text(current_class+"_"+num);
+		
+    	$("audio#play").currentTime = 0;
+		$("audio#play").attr("src","music"+current_class+"_"+num+".mp3"); 
+		$("audio#play").get(0).play();
+		current_num = num;	
+    });
 });
 </script>
-<style type="text/css">  
-  #menu {display: none}  
-  #menu2 {display: none} 
-</style>
-</head>
-<body>
-	<button id="open" type="button" style="border-radius:100%;"><img src="http://www.sharejs.com/uploadfiles/2012/07/16/134240093532377.png"></button>
-	<button id="open2" type="button" style="border-radius:10%;"><img src="http://lineofficial.blogimg.jp/tw/imgs/2/2/22f62401.png"></button>
-			
-	<br> <br> <br> 
-	<div id="menu"><p>音樂1開始放了喔</p></div>
-	<div id="menu2"><p>現在在播音樂2</p></div>
-	
-	<audio id="play" controls="controls">		
-  		<source src="沒音樂.mp3" type="audio/mpeg">
-	</audio>
-	
-	<br>
-	
-	<audio id="play2" controls="controls">		
-  		<source src="沒音樂.mp3" type="audio/mpeg">
-	</audio>
 
+</head>
+
+<body>
+	<button id="but1" type="button" style="width: 80px; height: 80px; background-color: #660000;">
+		<img src="color1.png">
+	</button>&nbsp;
+	<button id="but2" type="button" style="width: 80px; height: 80px; background-color: #888800;">
+		<img src="color2.png">
+	</button>&nbsp;
+	<button id="but3" type="button" style="width: 80px; height: 80px; background-color: #006600;">
+		<img src="color3.png">
+	</button>&nbsp;
+	<button id="but4" type="button" style="width: 80px; height: 80px; background-color: #0000CC;">
+		<img src="color4.png">
+	</button>
+		
+	<br><br><br>
+	
+	<p>-----------以下是幫助你判斷-----------</p>	
+	<audio id="play" controls="controls" src="music1_1.mp3" ></audio>
+	<p>現在正在播<div id="now"></div></p>
 	
 </body>
 </html>
