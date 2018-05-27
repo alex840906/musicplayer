@@ -11,7 +11,7 @@
 	var status = 0;
 	
 $(function(){ 
-	var num,last_num1,last_num2,last_num3,last_num4,last_num5,last_num6,last_num7;
+	var num,last_num1,last_num2,last_num3,last_num4,last_num5,last_num6,last_num7,val=0;
 	var current_num,current_class,change=0;
 	var audio = $("#play");
 	
@@ -36,9 +36,10 @@ $(function(){
 			num = get_random_val();
 		} while(num==last_num1);
 		$("#change").attr("src","pause.png");
-		
 		$(".now").text(music2_name[num]);
 		document.getElementById('bgc').style.backgroundColor = "#FFCCCC";
+		document.getElementById("image").innerHTML  = "<img src='image2_"+(val%3+1)+".jpg'>";
+		val++;
 		
 		audio.get(0).pause();	
 		audio.attr("src","music2_"+num+".mp3"); 
@@ -55,9 +56,10 @@ $(function(){
 			num = get_random_val();
 		} while(num==last_num2);
 		$("#change").attr("src","pause.png");
-		document.getElementById('bgc').style.backgroundColor = "#FFEECC";
-		
 		$(".now").text(music2_name[num]);
+		document.getElementById('bgc').style.backgroundColor = "#FFEECC";
+		document.getElementById("image").innerHTML  = "<img src='image4_"+(val%3+1)+".jpg'>";
+		val++;
 		
 		audio.get(0).pause();	
 		audio.attr("src","music4_"+num+".mp3"); 
@@ -74,10 +76,11 @@ $(function(){
 			num = get_random_val();
 		} while(num==last_num3);
 		$("#change").attr("src","pause.png");
-		document.getElementById('bgc').style.backgroundColor = "#FFFFCC";
-		
 		$(".now").text(music3_name[num]);
-		
+		document.getElementById('bgc').style.backgroundColor = "#FFFFCC";
+		document.getElementById("image").innerHTML  = "<img src='image6_"+(val%3+1)+".jpg' width=570 height=220>";
+		val++;
+	
 		audio.get(0).pause();	
 		audio.attr("src","music6_"+num+".mp3"); 
 		audio.get(0).play();	
@@ -93,9 +96,10 @@ $(function(){
 			num = get_random_val();
 		} while(num==last_num4);
 		$("#change").attr("src","pause.png");
-		document.getElementById('bgc').style.backgroundColor = "#CCFFCC";
-		
 		$(".now").text(music4_name[num]);
+		document.getElementById('bgc').style.backgroundColor = "#CCFFCC";
+		document.getElementById("image").innerHTML  = "<img src='image1_"+(val%3+1)+".jpg' width=570 height=220>";
+		val++;
 		
 		audio.get(0).pause();	
 		audio.attr("src","music1_"+num+".mp3"); 
@@ -112,9 +116,10 @@ $(function(){
 			num = get_random_val();
 		} while(num==last_num5);
 		$("#change").attr("src","pause.png");
-		
 		$(".now").text(music5_name[num]);
 		document.getElementById('bgc').style.backgroundColor = "#CCDDFF";
+		document.getElementById("image").innerHTML  = "<img src='image7_"+(val%3+1)+".jpg' width=570 height=220>";
+		val++;
 		
 		audio.get(0).pause();	
 		audio.attr("src","music7_"+num+".mp3"); 
@@ -131,10 +136,11 @@ $(function(){
 			num = get_random_val();
 		} while(num==last_num6);
 		$("#change").attr("src","pause.png");
-		document.getElementById('bgc').style.backgroundColor = "#CCCCFF";
-		
 		$(".now").text(music6_name[num]);
-		
+		document.getElementById('bgc').style.backgroundColor = "#CCCCFF";
+		document.getElementById("image").innerHTML  = "<img src='image5_"+(val%3+1)+".jpg' width=570 height=220>";
+		val++;
+			
 		audio.get(0).pause();	
 		audio.attr("src","music5_"+num+".mp3"); 
 		audio.get(0).play();
@@ -150,9 +156,10 @@ $(function(){
 			num = get_random_val();
 		} while(num==last_num7);
 		$("#change").attr("src","pause.png");
-		document.getElementById('bgc').style.backgroundColor = "#EECCFF";
-		
 		$(".now").text(music7_name[num]);
+		document.getElementById('bgc').style.backgroundColor = "#EECCFF";
+		document.getElementById("image").innerHTML  = "<img src='image3_"+(val%3+1)+".jpg' width=570 height=220>";
+		val++;
 		
 		audio.get(0).pause();	
 		audio.attr("src","music3_"+num+".mp3"); 
@@ -179,19 +186,41 @@ $(function(){
 		$("#change").attr("src","pause.png");
 		
 		if(current_class==1)
+		{
 			$(".now").text(music1_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image1_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
 		else if(current_class==2)
+		{
 			$(".now").text(music2_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image2_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
 		else if(current_class==3)
+		{
 			$(".now").text(music3_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image3_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
 		else if(current_class==4)
+		{
 			$(".now").text(music4_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image4_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
 		else if(current_class==5)
+		{
 			$(".now").text(music5_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image5_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
 		else if(current_class==6)
+		{
 			$(".now").text(music6_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image6_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
 		else if(current_class==7)
+		{
 			$(".now").text(music7_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image7_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
+		val++;
 		
     	audio.currentTime = 0;
 		audio.attr("src","music"+current_class+"_"+num+".mp3"); 
@@ -307,19 +336,41 @@ $(function(){
 		} while(num==current_num);
 		
 		if(current_class==1)
+		{
 			$(".now").text(music1_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image1_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
 		else if(current_class==2)
+		{
 			$(".now").text(music2_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image2_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
 		else if(current_class==3)
+		{
 			$(".now").text(music3_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image3_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
 		else if(current_class==4)
+		{
 			$(".now").text(music4_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image4_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
 		else if(current_class==5)
+		{
 			$(".now").text(music5_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image5_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
 		else if(current_class==6)
+		{
 			$(".now").text(music6_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image6_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
 		else if(current_class==7)
+		{
 			$(".now").text(music7_name[num]);
+			document.getElementById("image").innerHTML  = "<img src='image7_"+(val%3+1)+".jpg' width=570 height=220>";
+		}
+		val++;
 
 
     	audio.currentTime = 0;
