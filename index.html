@@ -6,63 +6,149 @@
 <script src="//code.jquery.com/jquery-3.3.1.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script>
+
+	var status = 0;
+	
 $(function(){ 
-	var num,last_num1,last_num2,last_num3,last_num4,current_num,current_class;
+	var num,last_num1,last_num2,last_num3,last_num4,last_num5,last_num6,last_num7;
+	var current_num,current_class,change=0;
+	var audio = $("#play");
+	
 	$("#but1").click(function() {  
+		$("#player").show();
 		do{
 			num = get_random_val();
 		} while(num==last_num1);
+		$("#change").attr("src","pause.png");
 		
-		$("#now").text("1_"+num);
+		$(".now").text("  1_"+num);
+		document.getElementById('bgc').style.backgroundColor = "#FFCCCC";
 		
-		$("audio#play").get(0).pause();	
-		$("audio#play").attr("src","music1_"+num+".mp3"); 
-		$("audio#play").get(0).play();	
+		audio.get(0).pause();	
+		audio.attr("src","music1_"+num+".mp3"); 
+		audio.get(0).play();	
 		last_num1 = num;
 		current_num = num;
 		current_class = 1;
+		change = 0;
+		status = 1;
 	});
 	$("#but2").click(function() { 
+		$("#player").show();
 		do{
 			num = get_random_val();
 		} while(num==last_num2);
+		$("#change").attr("src","pause.png");
+		document.getElementById('bgc').style.backgroundColor = "#FFEECC";
 		
-		$("#now").text("2_"+num);
+		$(".now").text("  2_"+num);
 		
-		$("audio#play").get(0).pause();	
-		$("audio#play").attr("src","music2_"+num+".mp3"); 
-		$("audio#play").get(0).play();
+		audio.get(0).pause();	
+		audio.attr("src","music2_"+num+".mp3"); 
+		audio.get(0).play();
 		last_num2 = num;	
 		current_num = num;
 		current_class = 2;
+		change = 0;
+		status = 1;
 	});
 	$("#but3").click(function() {  
+		$("#player").show();
 		do{
 			num = get_random_val();
 		} while(num==last_num3);
-		$("#now").text("3_"+num);
+		$("#change").attr("src","pause.png");
+		document.getElementById('bgc').style.backgroundColor = "#FFFFCC";
 		
-		$("audio#play").get(0).pause();	
-		$("audio#play").attr("src","music3_"+num+".mp3"); 
-		$("audio#play").get(0).play();	
+		$(".now").text("  3_"+num);
+		
+		audio.get(0).pause();	
+		audio.attr("src","music3_"+num+".mp3"); 
+		audio.get(0).play();	
 		last_num3 = num;
 		current_num = num;
 		current_class = 3;
+		change = 0;
+		status = 1;
 	});
 	$("#but4").click(function() {
+		$("#player").show();
 		do{
 			num = get_random_val();
 		} while(num==last_num4);
-		$("#now").text("4_"+num);
+		$("#change").attr("src","pause.png");
+		document.getElementById('bgc').style.backgroundColor = "#CCFFCC";
 		
-		$("audio#play").get(0).pause();	
-		$("audio#play").attr("src","music4_"+num+".mp3"); 
-		$("audio#play").get(0).play();
+		$(".now").text("  4_"+num);
+		
+		audio.get(0).pause();	
+		audio.attr("src","music4_"+num+".mp3"); 
+		audio.get(0).play();
 		last_num4 = num;
 		current_num = num;	
 		current_class = 4;
+		change = 0;
+		status = 1;
 	});
-	
+	$("#but5").click(function() {  
+		$("#player").show();
+		do{
+			num = get_random_val();
+		} while(num==last_num5);
+		$("#change").attr("src","pause.png");
+		
+		$(".now").text("  5_"+num);
+		document.getElementById('bgc').style.backgroundColor = "#CCDDFF";
+		
+		audio.get(0).pause();	
+		audio.attr("src","music1_"+num+".mp3"); 
+		audio.get(0).play();	
+		last_num5 = num;
+		current_num = num;
+		current_class = 5;
+		change = 0;
+		status = 1;
+	});
+	$("#but6").click(function() { 
+		$("#player").show();
+		do{
+			num = get_random_val();
+		} while(num==last_num6);
+		$("#change").attr("src","pause.png");
+		document.getElementById('bgc').style.backgroundColor = "#CCCCFF";
+		
+		$(".now").text("  6_"+num);
+		
+		audio.get(0).pause();	
+		audio.attr("src","music2_"+num+".mp3"); 
+		audio.get(0).play();
+		last_num6 = num;	
+		current_num = num;
+		current_class = 6;
+		change = 0;
+		status = 1;
+	});
+	$("#but7").click(function() {  
+		$("#player").show();
+		do{
+			num = get_random_val();
+		} while(num==last_num7);
+		$("#change").attr("src","pause.png");
+		document.getElementById('bgc').style.backgroundColor = "#EECCFF";
+		
+		$(".now").text("  7_"+num);
+		
+		audio.get(0).pause();	
+		audio.attr("src","music3_"+num+".mp3"); 
+		audio.get(0).play();	
+		last_num7 = num;
+		current_num = num;
+		current_class = 7;
+		change = 0;
+		status = 1;
+	});
+
+
 	function get_random_val(){
 		var val;
 		val = Math.floor((Math.random() * 5) + 1);
@@ -70,42 +156,365 @@ $(function(){
 		return val;
 	}
 	
-    $("audio#play").bind("ended", function() { 
+    audio.bind("ended", function() { 
+		do{
+			num = get_random_val();
+		} while(num==current_num);
+		$("#change").attr("src","pause.png");
+		
+		$(".now").text("  "+current_class+"_"+num);
+		
+    	audio.currentTime = 0;
+		audio.attr("src","music"+current_class+"_"+num+".mp3"); 
+		audio.get(0).play();
+		current_num = num;	
+		change = 0;
+    });
+    
+	$("#but_switch").click(function() {
+		if(change==0)
+		{
+			$("#change").attr("src","play.png");
+			audio.get(0).pause();	
+			change = 1;
+			status = 0;
+		}
+			
+		else
+		{
+			$("#change").attr("src","pause.png");
+			audio.get(0).play();	
+			change = 0;
+			status = 1;
+		}
+	});
+	audio.on('timeupdate', function() {
+		var ltime_cur = parseInt(audio[0].currentTime);
+		var lmm_cur = parseInt(ltime_cur/60);
+  		var lss_cur = ltime_cur - lmm_cur*60;
+   		$('.current').text((lmm_cur<10?"0":"")+lmm_cur+":"+(lss_cur<10?"0":"")+lss_cur+"/");
+   		var currentPos = audio[0].currentTime; //Get currenttime
+   		var maxduration = audio[0].duration; //Get video duration
+   		var percentage = 100 * currentPos / maxduration; //in %
+   		$('.timeBar').css('width', percentage+'%');
+  	});
+	audio.on('loadedmetadata', function() {
+		var ltime = parseInt(audio[0].duration);
+		var lmm = parseInt(ltime/60);
+  		var lss = ltime - lmm*60;
+   		$('.duration').text((lmm<10?"0":"")+lmm+":"+(lss<10?"0":"")+lss);
+	});
+	var timeDrag = false;   /* Drag status */
+	$('.progressBar').mousedown(function(e) {
+   		timeDrag = true;
+   		updatebar(e.pageX);
+	});
+	
+	$(document).mouseup(function(e) {
+   		if(timeDrag) {
+      		timeDrag = false;
+      		updatebar(e.pageX);
+   		}
+	});
+	
+	$(document).mousemove(function(e) {
+	   if(timeDrag) {
+	      updatebar(e.pageX);
+	   }
+	});
+	var updatebar = function(x) {
+   		var progress = $('.progressBar');
+   		var maxduration = audio[0].duration; //Video duraiton
+   		var position = x - progress.offset().left; //Click pos
+   		var percentage = 100 * position / progress.width();
+ 	
+   		//Check within range
+   		if(percentage > 100) {
+   		   percentage = 100;
+   		}
+   		if(percentage < 0) {
+   		   percentage = 0;
+   		}
+ 
+		   //Update progress bar and video currenttime
+	    $('.timeBar').css('width', percentage+'%');
+	    audio[0].currentTime = maxduration * percentage / 100;
+	};
+	
+	/*
+	$('.volume').mousedown(function(e) {
+	var position2 = e.pageX - $('.volume').offset().left - 20;
+	var percentage2 = 100 * position2 / 62;
+   		if(percentage2 > 100) {
+   		   percentage2 = 100;
+   		}
+   		if(percentage2 < 0) {
+   		   percentage2 = 0;
+   		}
+	   if(percentage2 < 10) {
+	   	  $(".volumeBar").attr("src","vol_0.png");
+	   }
+	   else if(percentage2 < 30) {
+	      $(".volumeBar").attr("src","vol_20.png");
+	   }
+	   else if(percentage2 < 50) {
+	      $(".volumeBar").attr("src","vol_40.png");
+	   }
+	   else if(percentage2 < 70) {
+	      $(".volumeBar").attr("src","vol_60.png");
+	   }
+	   else if(percentage2 < 90) {
+	      $(".volumeBar").attr("src","vol_80.png");
+	   }
+	   else {
+	      $(".volumeBar").attr("src","vol_100.png");
+	   }
+	   audio[0].volume = percentage2 / 100;
+	});
+	*/
+	$("#but_next").click(function() {
 		do{
 			num = get_random_val();
 		} while(num==current_num);
 		
-		$("#now").text(current_class+"_"+num);
+		$(".now").text("  "+current_class+"_"+num);
 		
-    	$("audio#play").currentTime = 0;
-		$("audio#play").attr("src","music"+current_class+"_"+num+".mp3"); 
-		$("audio#play").get(0).play();
+    	audio.currentTime = 0;
+		audio.attr("src","music"+current_class+"_"+num+".mp3"); 
+		audio.get(0).play();
 		current_num = num;	
-    });
+		change = 0;
+		status = 1;
+		
+	});
+	
+	audio[0].volume = 1;
+	$("#vol_low").click(function() {  
+	
+		audio[0].volume = audio[0].volume - 0.2;
+		if(audio[0].volume < 0.2)
+		{
+			audio[0].volume = 0;
+			$("#vol_low").css("background-color", "#FF6666");
+		}
+		else if(audio[0].volume <= 1)
+		{
+			$("#vol_low").css("background-color", "#AAAAAA");
+			$("#vol_high").css("background-color", "#AAAAAA");
+		}
+	
+	});
+
+	$("#vol_high").click(function() {  
+	
+		audio[0].volume = audio[0].volume + 0.2;
+		if(audio[0].volume > 0.8)
+		{
+			audio[0].volume = 1;
+			$("#vol_high").css("background-color", "#FF6666");
+		}
+		else if(audio[0].volume >= 0)
+		{
+			$("#vol_high").css("background-color", "#AAAAAA");
+			$("#vol_low").css("background-color", "#AAAAAA");
+		}
+	
+	});
+
 });
+
+    var jsImg_l = new Array("left_hand.png","left_hand2.png");
+    var jsImg_r = new Array("right_hand.png","right_hand2.png");
+	var jsImg = new Array("foot5_1.png","foot1_1.png","foot5_1.png","foot3_1.png","foot5_1.png","foot2_1.png","foot5_1.png","foot2_1.png","foot5_1.png",
+							"foot5_2.png","foot1_2.png","foot5_2.png","foot3_2.png","foot5_2.png","foot2_2.png","foot5_2.png","foot2_2.png","foot5_2.png",
+								"foot4_1.png","foot4_2.png","foot4_1.png","foot4_2.png","foot4_1.png","foot4_2.png","foot4_1.png","foot4_2.png");
+    var jsImg_len = 2;
+    var jsImg_len2 = 26;
+    var i=0,j=0;
+
+    setInterval("sequentialImg()",500);
+    function sequentialImg(){ 
+    	if(status==1)
+    	{
+    		document.getElementById("left_hand").innerHTML  = "<img src='"+jsImg_l[i]+"' width=250 height=200>"; 
+    		document.getElementById("right_hand").innerHTML  = "<img src='"+jsImg_r[i]+"' width=250 height=200>";      
+    		document.getElementById("foot").innerHTML  = "<img src='"+jsImg[j]+"'>";
+    		i++;
+    		j++;
+    		if(i>=jsImg_len)  
+    			i=0;	
+       		if(j>=jsImg_len2)  
+    			j=0;
+    	}
+    }
+
 </script>
+
+<style type="text/css">
+.out_player {
+	position: absolute;
+	left: 50%;
+}
+.position_player {
+	padding: 100px;
+	background-color: #AAAAAA;
+	background-image: url('iron.jpg');
+}
+.progressBar
+{
+   position: relative;
+   width: 570px;
+   height: 40px;
+   background-color: #000000;
+}
+.timeBar
+{
+   position: absolute;
+   top: 14px;
+   left: 0;
+   width: 0;
+   height: 12px;
+   background-color: #ff0000;
+}
+.volume
+{
+   position: relative;
+   width: 100px;
+   height: 100px;
+}
+.next
+{
+   position: relative;
+   width: 100px;
+   height: 100px;
+}
+.time
+{
+   position: relative;
+   width: 100px;
+   height: 50px;
+}
+.song_name
+{
+   position: relative;
+   width: 300px;
+   height: 50px;
+}
+</style>
 
 </head>
 
-<body>
-	<button id="but1" type="button" style="width: 80px; height: 80px; background-color: #660000;">
-		<img src="color1.png">
-	</button>&nbsp;
-	<button id="but2" type="button" style="width: 80px; height: 80px; background-color: #888800;">
-		<img src="color2.png">
-	</button>&nbsp;
-	<button id="but3" type="button" style="width: 80px; height: 80px; background-color: #006600;">
-		<img src="color3.png">
-	</button>&nbsp;
-	<button id="but4" type="button" style="width: 80px; height: 80px; background-color: #0000CC;">
-		<img src="color4.png">
-	</button>
-		
-	<br><br><br>
+<body id="bgc" style="background-color: #FFFFFF; line-height:0px;">
 	
+	<div class="out_player" style="width: 1200px; height: 630px; margin-left: -500px; padding: 50px 50px 0px 50px">
+		<div style="width: 700px; height: 80px; padding: 0px 0px 0px 250px">
+			<button id="but1" type="button" style="width: 50px; height: 80px; background-color: #FF0000; outline:none; border:3px #440000 solid; border-bottom-style: none;"></button>&nbsp;
+			<button id="but2" type="button" style="width: 50px; height: 80px; background-color: #FFAA00; outline:none; border:3px #442200 solid; border-bottom-style: none;"></button>&nbsp;
+			<button id="but3" type="button" style="width: 50px; height: 80px; background-color: #FFFF00; outline:none; border:3px #444400 solid; border-bottom-style: none;"></button>&nbsp;
+			<button id="but4" type="button" style="width: 50px; height: 80px; background-color: #00FF00; outline:none; border:3px #004400 solid; border-bottom-style: none;"></button>&nbsp;
+			<button id="but5" type="button" style="width: 50px; height: 80px; background-color: #0088FF; outline:none; border:3px #002244 solid; border-bottom-style: none;"></button>&nbsp;
+			<button id="but6" type="button" style="width: 50px; height: 80px; background-color: #0000FF; outline:none; border:3px #000044 solid; border-bottom-style: none;"></button>&nbsp;
+			<button id="but7" type="button" style="width: 50px; height: 80px; background-color: #BB00FF; outline:none; border:3px #220044 solid; border-bottom-style: none;"></button>
+		</div>			
+		<div style="width: 1200px; height: 378px">
+			<div style="width: 75px; height: 175px; border:none; float:left">
+				<div style="width: 75px; height: 100px; border:none"></div>
+				<div style="width: 75px; height: 75px; border:3px #000000 solid;">
+					<button id="vol_low" type="button" style="width: 75px; height: 75px;border:none; background-color: #AAAAAAAA; outline:none;">
+						<img src="vol_low.png" style="width: 60px; height: 46px">
+					</button>
+				</div>
+			</div>
+			<div id="player" class="position_player" style="width: 570px; height: 175px; border:3px #000000 solid; float:left;">
+				<!-- ;display: none-->
+				<br><br><br><br>&nbsp;&nbsp;
+				<button id="but_switch" style="outline:none; border:0px;border-radius: 50px; background-color: #444444" type="button" >
+					<img id="change" src="play.png" style="width: 100px; height: 100px">
+				</button>&nbsp;&nbsp;
+					
+		  		<div class="progressBar" style="left: 0px; top: 75px">
+		   			<div class="timeBar"></div>
+				</div>&nbsp;&nbsp;	
+				
+				<!--
+				<div class="volume" style="left: 415px; top: -155px">
+					<img src="vol_100.png" class="volumeBar">
+				</div>&nbsp;&nbsp;
+				-->
+				
+				<div class="next" style="left: 447px; top: -143px">
+					<button id="but_next" style="outline:none; border:0px;border-radius: 50px; background-color: #444444" type="button">
+						<img id="next_one" src="next.png" style="width: 100px; height: 100px">
+					</button>
+				</div>
+				
+				<!--
+				<div class="time" style="left: 110px; top: -270px">
+		   			<span class="current"></span>
+		  			<span class="duration"></span>
+				</div>
+					
+				<div class="song_name" style="left: 210px; top: -270px">
+		   			<span class="now"></span>
+				</div>
+			
+				-->
+				
+			</div>
+		
+			<div style="width: 75px; height: 175px; border:none; float:left">
+				<div style="width: 75px; height: 100px; border:none"></div>
+				<div style="width: 75px; height: 75px; border:3px #000000 solid;border-left-style: none;">
+					<button id="vol_high" type="button" style="width: 75px; height: 75px;border:none; background-color: #FF6666; outline:none;">
+						<img src="vol_high.png" style="width: 70px; height: 65px">
+					</button>
+				</div>
+			</div>
+
+		</div>
+	
+	
+	
+	
+	
+		<div class="out_player" style="width: 1300px; height: 300px; margin-left: -825px; padding: 0px 50px 50px 50px">
+			<div style="width: 250px; height: 200px; border:none; float:left">
+				<div id="left_hand" style="width: 250px; height: 200px; border:none;">
+					<img src="left_hand.png" style="width: 250px; height: 200px;">
+				</div>
+			</div>
+			<div style="width: 570px; height: 300px; float:left; padding: 50px 100px 50px 100px; background-image: url('iron.jpg'); border:3px #000000 solid;">
+				
+				<div class="song_name" style="width: 576px; height: 250px; background-color: #000000">
+		   			<div class="now" style="color:#FFFFFF; font-size:35px; width: 570px; height: 30px;padding: 30px 0px 0px 0px;text-align:center">&nbsp;</div>
+		   			<div id="image" style="width: 567px; height: 220px">
+		   				<img src="iron.jpg" style="width: 570px; height: 220px; border-top-style:none; border:3px #000000 solid;">	
+		   			</div>
+				</div>
+	
+			</div>
+		
+			<div style="width: 250px; height: 200px; border:none; float:left">
+				<div id="right_hand" style="width: 250px; height: 200px; border:none;">
+					<img src="right_hand.png" style="width: 250px; height: 200px;">
+				</div>
+			</div>
+			
+			<div id="foot" style="width: 500px; height: 300px; padding: 0px 0px 0px 400px">
+				<img src="foot5_1.png">
+			</div>
+		</div>
+
+
+
+	</div>
+	
+	<audio id="play" src=" " ></audio>
+<!--
 	<p>-----------以下是幫助你判斷-----------</p>	
 	<audio id="play" controls="controls" src="music1_1.mp3" ></audio>
-	<p>現在正在播<div id="now"></div></p>
-	
+	<p>現在正在播<div class="now"></div></p>
+-->
+
 </body>
 </html>
